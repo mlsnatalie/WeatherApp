@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#3F51B5</color>
+
+
+
+    <!-- gray scale -->
+    <color name="white">#FFFFFF</color>
+    <color name="gray_light">#F4F4F4</color>
+    <color name="gray">#A0A0A0</color>
+    <color name="black">#333333</color>
+    <color name="d8">#d8d8d8</color>
+    <!-- basic colors -->
+    <color name="indigo">#15294E</color>
+    <color name="indigo_light">#456490</color>
+    <color name="yellow">#CFA966</color>
+    <color name="green">#009245</color>
+    <color name="red">#F94F4D</color>
+    <color name="blue">#456490</color>
+    <color name="A0">#A0A0A0</color>
+    <color name="EE">#EEEEEE</color>
+    <color name="F4">#F4F4F4</color>
+
+    <color name="yellow_my">#FFFF00</color>
+
+    <color name="tab_checked">#3F51B5</color>
+    <color name="tab_unchecked">#757575</color>
+
+    <color name="colorGray">#ccc</color>
 </resources>
