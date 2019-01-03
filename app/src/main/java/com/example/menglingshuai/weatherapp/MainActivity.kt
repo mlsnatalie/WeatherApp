@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        val url = "http://api.openweathermap.org/data/2.5/weather?q=Berlin&APPID=15646a06818f61f7b8d7823ca833e1ce"
+        val url = "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=15646a06818f61f7b8d7823ca833e1ce&zip=94042"
 //        OkHttpUtils
 //            .post()
 //            .url(url)
@@ -100,8 +100,8 @@ class MainActivity : AppCompatActivity() {
                     val gson = Gson()
                     val bean = gson.fromJson<DataModel>(mJson, DataModel::class.java)
                     Log.e("aaaddd", "6666" + bean.cod )
-                    val mList: List<DataModel.ListBean> = bean.list!!
-                    Log.e("aaaddd", "22222" + mList.size)
+//                    val mList: List<DataModel.ListBean> = bean.list!!
+                    Log.e("aaaddd", "22222" + bean.weather!!.size)
 //                    Log.e("aaaddd", "7777" + mList.forEach{
 //                        val list: List<DataModel.ListBean.WeatherBean> = it.weather!!
 //                        it.pressure
