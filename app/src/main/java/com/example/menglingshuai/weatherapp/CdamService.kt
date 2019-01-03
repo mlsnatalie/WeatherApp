@@ -3,7 +3,7 @@ package com.example.menglingshuai.weatherapp
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -28,7 +28,7 @@ object CdamService {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(API_BASE_URL)
             .client(okHttpClient)
@@ -37,7 +37,7 @@ object CdamService {
     }
 
     private val API_BASE_URL =
-        "http://api.openweathermap.org/data/2.5/forecast/daily?mode=json&units=metric&cnt=7/"
+        "http://api.openweathermap.org/data/2.5/forecast/"
 
     private fun addParameters(builder: HttpUrl.Builder, params: Map<String, String>): HttpUrl.Builder {
         for ((key, value) in params) {

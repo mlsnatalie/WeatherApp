@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.example.menglingshuai.weatherapp.domain.commands.model.CheckCouponItemModel
 import com.example.menglingshuai.weatherapp.domain.commands.model.DataModel
-import com.example.menglingshuai.weatherapp.domain.commands.model.ListModel
 import com.google.gson.Gson
 import com.example.menglingshuai.weatherapp.helper.dialog.DialogHelper
 import com.zhy.http.okhttp.callback.StringCallback
@@ -36,23 +35,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val forecastList = findViewById<RecyclerView>(R.id.forecastList)
         forecastList.layoutManager = LinearLayoutManager(this)
-//        updateUI()
-//        initData()
+        updateUI()
+        initData()
 
-        forecastList.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = mAdapter
-            addItemDecoration( SimpleDividerDecoration(context))
-        }
+//        forecastList.apply {
+//            layoutManager = LinearLayoutManager(this@MainActivity)
+//            adapter = mAdapter
+//            addItemDecoration( SimpleDividerDecoration(context))
+//        }
 
-        loadCheckCouponList()
+//        loadCheckCouponList()
 
     }
 
     @SuppressLint("CheckResult")
     private fun loadCheckCouponList() {
         val loading = DialogHelper.loading(this)
-        NetApi.getCheckCoupon("15646a06818f61f7b8d7823ca833e1ce","94042")
+        NetApi.getCheckCoupon("15646a06818f61f7b8d7823ca833e1ce", "94042")
             .compose(RxHelper.applyLoading(loading))
             .subscribe({ res ->
                 if(res.data != null){
@@ -61,7 +60,8 @@ class MainActivity : AppCompatActivity() {
                     ToastUtils.showLong("没有优惠券")
                 }
             }, { it ->
-                ToastUtils.showShort("${it.message}")
+//                ToastUtils.showLong("${it.message}")
+                Log.e("aaaddd", it.message)
             })
     }
 
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        val url = "http://api.openweathermap.org/data/2.5/forecast/daily?mode=json&units=metric&cnt=7&APPID=15646a06818f61f7b8d7823ca833e1ce&zip=94042"
+        val url = "http://api.openweathermap.org/data/2.5/weather?q=Berlin&APPID=15646a06818f61f7b8d7823ca833e1ce"
 //        OkHttpUtils
 //            .post()
 //            .url(url)
@@ -99,11 +99,18 @@ class MainActivity : AppCompatActivity() {
                     Log.e("aaaddd", mJson)
                     val gson = Gson()
                     val bean = gson.fromJson<DataModel>(mJson, DataModel::class.java)
-                    Log.e("aaaddd", "1111" + bean.cod )
-                    Log.e("aaaddd", "1111" + bean.message )
-//                    Log.e("aaaddd", "1111" + bean.city )
-                    val bean1 = gson.fromJson<ListModel>(mJson, ListModel::class.java)
-                    Log.e("aaaddd", "222>>>" + bean1.day )
+                    Log.e("aaaddd", "6666" + bean.cod )
+                    val mList: List<DataModel.ListBean> = bean.list!!
+                    Log.e("aaaddd", "22222" + mList.size)
+//                    Log.e("aaaddd", "7777" + mList.forEach{
+//                        val list: List<DataModel.ListBean.WeatherBean> = it.weather!!
+//                        it.pressure
+//                        list.forEach {
+//                            it.description
+//                            Log.e("aaaddd", "1111" + it.description)
+//                        }
+//
+//                    })
                 }
             }
         })

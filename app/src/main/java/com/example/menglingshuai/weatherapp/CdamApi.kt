@@ -12,7 +12,7 @@ import retrofit2.http.*
  */
 interface CdamApi {
 
-    @POST()
+    @POST("daily?")
     fun getCheckCouponlist(@Body loginRequest: Map<String, String>
     ): Flowable<ApiResponse<List<CheckCouponItemModel>?>>
 }

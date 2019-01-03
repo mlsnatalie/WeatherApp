@@ -1,0 +1,173 @@
+/**
+ * Shared file between builds so that they can all use the same dependencies and
+ * maven repositories.
+ **/
+ext.deps = [:]
+// versions
+def versions = [:]
+versions.arch = hasProperty("ARCH_VERSION") ? getProperty("ARCH_VERSION") : "1.0.0"
+versions.support = "27.0.0"
+versions.dagger = "2.11"
+versions.junit = "4.12"
+versions.espresso = "3.0.1"
+versions.retrofit = "2.3.0"
+versions.okhttp_logging_interceptor = "3.9.0"
+versions.mockwebserver = "3.8.1"
+versions.apache_commons = "2.5"
+versions.mockito = "2.7.19"
+versions.mockito_all = "1.10.19"
+versions.dexmaker = "2.2.0"
+versions.constraint_layout = "1.0.2"
+versions.glide = "4.5.0"
+versions.timber = "4.5.1"
+versions.android_gradle_plugin = "3.1.2"
+versions.rxjava2 = "2.1.8"
+versions.rx_android = "2.0.1"
+versions.atsl_runner = "1.0.1"
+versions.atsl_rules = "1.0.1"
+versions.hamcrest = "1.3"
+versions.kotlin = "1.2.71"
+versions.paging = "1.0.0-alpha4-1"
+versions.disklrucache = "2.0.2"
+versions.utilcode = "1.11.1"
+versions.androidcommonutils = "1.1.3"
+versions.circleindicator = "1.2.2@aar"
+versions.patternlockview = "1.0.0"
+//versions.ucrop = "2.2.1"// 图片剪裁
+versions.rxpermissions = "0.9.5@aar"// 权限检测
+versions.arouter_api = "1.3.1" // Activity路由
+versions.arouter_compiler = "1.1.4"
+versions.arouter_annotation = "1.0.4"
+versions.xrecyclerview = "1.5.9" // 加强版的recyclerview
+versions.qiniu = "7.3.+" // 七牛文件服务
+versions.versionchecklib = "2.0.2" // 版本检查
+versions.logger = "2.1.1"
+versions.ellipsizetextview = "1.0.5"
+versions.bottom_navigation_view_ex = "1.2.4"
+versions.greendao = "3.2.2"
+def deps = [:]
+
+// specific library
+def support = [:]
+support.annotations = "com.android.support:support-annotations:$versions.support"
+support.app_compat = "com.android.support:appcompat-v7:$versions.support"
+support.recyclerview = "com.android.support:recyclerview-v7:$versions.support"
+support.cardview = "com.android.support:cardview-v7:$versions.support"
+support.design = "com.android.support:design:$versions.support"
+support.v4 = "com.android.support:support-v4:$versions.support"
+support.core_utils = "com.android.support:support-core-utils:$versions.support"
+deps.support = support
+
+def room = [:]
+room.runtime = "android.arch.persistence.room:runtime:$versions.arch"
+room.compiler = "android.arch.persistence.room:compiler:$versions.arch"
+room.rxjava2 = "android.arch.persistence.room:rxjava2:$versions.arch"
+room.testing = "android.arch.persistence.room:testing:$versions.arch"
+deps.room = room
+
+def lifecycle = [:]
+lifecycle.runtime = "android.arch.lifecycle:runtime:$versions.arch"
+lifecycle.extensions = "android.arch.lifecycle:extensions:$versions.arch"
+lifecycle.java8 = "android.arch.lifecycle:common-java8:$versions.arch"
+lifecycle.compiler = "android.arch.lifecycle:compiler:$versions.arch"
+deps.lifecycle = lifecycle
+
+def arch_core = [:]
+arch_core.testing = "android.arch.core:core-testing:$versions.arch"
+deps.arch_core = arch_core
+
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit.mock = "com.squareup.retrofit2:retrofit-mock:$versions.retrofit"
+retrofit.rxjava_adapter = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+deps.retrofit = retrofit
+deps.okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${versions.okhttp_logging_interceptor}"
+
+def dagger = [:]
+dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
+dagger.android = "com.google.dagger:dagger-android:$versions.dagger"
+dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dagger"
+dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$versions.dagger"
+
+deps.dagger = dagger
+
+def espresso = [:]
+espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso"
+espresso.contrib = "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
+espresso.intents = "com.android.support.test.espresso:espresso-intents:$versions.espresso"
+deps.espresso = espresso
+
+def atsl = [:]
+atsl.runner = "com.android.support.test:runner:$versions.atsl_runner"
+atsl.rules = "com.android.support.test:rules:$versions.atsl_runner"
+deps.atsl = atsl
+
+def mockito = [:]
+mockito.core = "org.mockito:mockito-core:$versions.mockito"
+mockito.all = "org.mockito:mockito-all:$versions.mockito_all"
+deps.mockito = mockito
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre8:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+deps.kotlin = kotlin
+
+// other library
+deps.greendao = "org.greenrobot:greendao:$versions.greendao"
+deps.paging = "android.arch.paging:runtime:$versions.paging"
+deps.glide = "com.github.bumptech.glide:glide:$versions.glide"
+deps.glide_compiler = "com.github.bumptech.glide:compiler:$versions.glide"
+deps.dexmaker = "com.linkedin.dexmaker:dexmaker-mockito:$versions.dexmaker"
+deps.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
+deps.timber = "com.jakewharton.timber:timber:$versions.timber"
+deps.junit = "junit:junit:$versions.junit"
+deps.mock_web_server = "com.squareup.okhttp3:mockwebserver:$versions.mockwebserver"
+deps.rxjava2 = "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
+deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
+deps.hamcrest = "org.hamcrest:hamcrest-all:$versions.hamcrest"
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+deps.disklrucache = "com.jakewharton:disklrucache:$versions.disklrucache"
+deps.utilcode = "com.blankj:utilcode:$versions.utilcode"
+deps.androidcommonutils = "com.luffykou:android-common-utils:$versions.androidcommonutils"
+deps.circleindicator = "me.relex:circleindicator:$versions.circleindicator"
+deps.patternlockview = "com.andrognito.patternlockview:patternlockview:$versions.patternlockview"
+deps.patternlockview_reactive = "com.andrognito.patternlockview:patternlockview-reactive:$versions.patternlockview"
+//deps.ucrop = "com.github.yalantis:ucrop:$versions.ucrop"
+deps.rxpermissions = "com.tbruyelle.rxpermissions2:rxpermissions:$versions.rxpermissions"
+deps.arouter_api = "com.alibaba:arouter-api:$versions.arouter_api"
+deps.arouter_compiler = "com.alibaba:arouter-compiler:$versions.arouter_compiler"
+deps.arouter_annotation = "com.alibaba:arouter-annotation:$versions.arouter_annotation"
+deps.xrecyclerview = "com.jcodecraeer:xrecyclerview:$versions.xrecyclerview"
+deps.qiniu = "com.qiniu:qiniu-android-sdk:$versions.qiniu"
+deps.versionchecklib = "com.allenliu.versionchecklib:library:$versions.versionchecklib"
+deps.logger = "com.orhanobut:logger:$versions.logger"
+deps.ellipsizetextview = "com.dinuscxj:ellipsizetextview:$versions.ellipsizetextview"
+deps.aliyun_oss = "com.aliyun.dpa:oss-android-sdk:2.8.4"
+//deps.bottom_navigation_view_ex = "com.github.ittianyu:BottomNavigationViewEx:$versions.bottom_navigation_view_ex"
+deps.gaode_map2d = "com.amap.api:map2d:latest.integration"
+deps.gaode_location = "com.amap.api:location:latest.integration"
+deps.gaode_map3d = "com.amap.api:3dmap:latest.integration"
+deps.material_dialogs = "com.afollestad.material-dialogs:core:0.9.6.0"
+deps.commons_lang3 = "org.apache.commons:commons-lang3:3.6" // apace 常用工具类
+deps.pdfview = "com.github.barteksc:android-pdf-viewer:2.8.2" // pdf view
+deps.pdfviewpager = "es.voghdev.pdfviewpager:library:1.0.3" // pdf view from url
+ext.deps = deps
+
+def build_versions = [:]
+build_versions.min_sdk = 21
+build_versions.target_sdk = 27
+build_versions.build_tools = "27.0.3"
+ext.build_versions = build_versions
+
+
+def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    handler.maven { url "https://jitpack.io" }
+}
+
+ext.addRepos = this.&addRepos

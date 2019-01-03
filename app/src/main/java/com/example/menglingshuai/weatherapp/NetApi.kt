@@ -15,9 +15,9 @@ import io.reactivex.FlowableTransformer
  */
 object NetApi {
 
-    fun getCheckCoupon(APPID: String,zip: String): Flowable<ApiResponse<List<CheckCouponItemModel>?>> {
+    fun getCheckCoupon(APPID: String, zip: String): Flowable<ApiResponse<List<CheckCouponItemModel>?>> {
 
-        val map: HashMap<String, String> = hashMapOf(Pair("APPID", APPID),Pair("zip", zip))
+        val map: HashMap<String, String> = hashMapOf(Pair("APPID", APPID), Pair("zip", zip))
         return CdamService.api
                 .getCheckCouponlist(map)
                 .compose(apply())
